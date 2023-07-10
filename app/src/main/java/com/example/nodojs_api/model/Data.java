@@ -35,6 +35,13 @@ public class Data {
         this.v = v;
     }
 
+    public Data(String name, String address, String phone, String image) {
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.image = image;
+    }
+
     public String getId() {
         return id;
     }

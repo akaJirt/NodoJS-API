@@ -87,6 +87,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         public ImageView imgUser;
 
         public Button btnDelete, btnUpdate;
+
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
             txtId = itemView.findViewById(R.id.txtId);
@@ -99,14 +100,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     }
 
 
-    public int getDataListSize() {
-        return dataList.size();
+    public void addData(Data data) {
+        dataList.add(data);
+        notifyItemInserted(dataList.size() - 1);
     }
-    public void addUser(Data data) {
-        if (dataList != null) {
-            dataList.add(data);
-            notifyItemInserted(dataList.size() - 1);
-        }
-    }
+
+
 
 }

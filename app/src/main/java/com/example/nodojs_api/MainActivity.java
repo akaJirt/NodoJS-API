@@ -15,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -24,12 +25,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity{
-    private RecyclerView recyclerView;
+    public RecyclerView recyclerView;
     private UserAdapter userAdapter;
 
     private TextView tvTitle;
 
     private FloatingActionButton fabAdd;
+
+    private List<Data> dataList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,8 +105,9 @@ public class MainActivity extends AppCompatActivity{
                     Toast.makeText(MainActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
                     Data data = response.body();
                     if (data != null) {
-                        userAdapter.addUser(data);
-                        tvTitle.setText("Danh sách người dùng (" + userAdapter.getDataListSize() + ")");
+                        userAdapter.addData(data);
+                        tvTitle.setText("Danh sách người dùng (" + userAdapter.getItemCount() + ")");
+                        callApi();
                     }
                 } else {
                     Toast.makeText(MainActivity.this, "Thêm không thành công", Toast.LENGTH_SHORT).show();
